@@ -23,8 +23,13 @@
             </form>
           </td>
           <td>
-            <form>
+            <form action="/bills/<%= i %>">
               <input type="submit" value="DETAILS">
+            </form>
+          </td>
+          <td>
+            <form method=POST action="/bills/<%= i %>?_method=DELETE">
+                <input type='submit' value="Delete"/>
             </form>
           </td>
         </tr>

@@ -8,7 +8,15 @@
     <a href="/bills">Back to the Bills</a>
 
     <h1><%= singleBill.name %></h1>
+    <p>Name: <%= singleBill.name %></p> <br/>
+    <p>Bill Amount: <%= singleBill.billAmount %></p> <br/>
+    <p>Due Date: <%= singleBill.dueDate %></p> <br/>
+    <p>Pay Method: <%= singleBill.payMethod %></p> <br/>
+    <p>Autopay: <%= singleBill.autopay %></p> <br/>
+    <p>Notes: <%= singleBill.notes %> <br/>
 
-    
+    <form method=POST action="/bills/<%= index %>?_method=DELETE">
+        <input type='submit' value="Delete" id="delete-button"/>
+    </form>
   </body>
 </html>

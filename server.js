@@ -30,11 +30,17 @@ app.post('/bills', (req, res) => {
 
 //show route
 app.get('/bills/:index', (req, res) => {
-  res.render('show', {
-    bill: bills[req.params.index]
+  res.render('show.ejs', {
+    singleBill: bills[req.params.index],
+    index: req.params.index
   });
 });
 
+//delete route
+app.delete('/bills/:index', (req, res) => {
+  bills.splice(req.params.index, 1)//remove an element from the array
+  res.redirect('/bills')
+})
 
 
 
