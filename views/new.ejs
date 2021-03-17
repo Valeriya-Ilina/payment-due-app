@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>New Bill</title>
+  </head>
+  <body>
+    <h1>New Bill</h1>
+    <form action="/bills" method="POST">
+      Name:<input type="text" name="name" /> <br/>
+      Bill Amount:<input type="text" name="billAmount" /> <br/>
+      Due Date:<input type="text" name="dueDate" /> <br/>
+      Pay Method:<input type="text" name="payMethod" /> <br/>
+      Autopay:<input type="checkbox" name="autopay" /> <br/>
+      Notes:<input type="text" name="notes" /> <br/>
+      <input type="submit" value="Create Bill" />
+    </form>
+
+
+  </body>
+</html>
