@@ -17,8 +17,19 @@
           <td><%= allBills[i].dueDate %></td>
           <td>$<%= allBills[i].billAmount %></td>
           <td><%= allBills[i].name %></td>
+          <td>
+            <form>
+              <input type="submit" value="PAY">
+            </form>
+          </td>
+          <td>
+            <form>
+              <input type="submit" value="DETAILS">
+            </form>
+          </td>
         </tr>
       <% } %>
     </table>
+    <a href="/bills/new">Add New Bill</a>
   </body>
 </html>
