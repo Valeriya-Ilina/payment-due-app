@@ -21,12 +21,12 @@ app.get('/bills', (req, res) => {
 //new route
 app.get('/bills/new', (req, res) => {
   res.render('new.ejs')
-})
+});
 //create route
 app.post('/bills', (req, res) => {
   bills.push(req.body)
   res.redirect('/bills')
-})
+});
 
 //show route
 app.get('/bills/:index', (req, res) => {
@@ -40,12 +40,26 @@ app.get('/bills/:index', (req, res) => {
 app.delete('/bills/:index', (req, res) => {
   bills.splice(req.params.index, 1)//remove an element from the array
   res.redirect('/bills')
-})
+});
 
-
-
-
-
+//edit route
+app.get('/bills/:index/edit', (req,res) => {
+  res.render('edit.ejs', {
+    singleBill: bills[req.params.index],
+    index: req.params.index
+  });
+});
+//put route
+app.put('/bills/:index', (req, res) => {
+  if(req.body.autopay === 'on'){
+    req.body.autopay = true
+  } else {
+    req.body.autopay = false
+  }
+  console.log(req.body)
+  bills[req.params.index] = req.body
+  res.redirect(`/bills/${req.params.index}`)
+});
 
 
 

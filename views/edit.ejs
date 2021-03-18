@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+  </head>
+  <title>Edit Bill</title>
+  <body>
+    <h1>Edit <%= singleBill.name %></h1>
+
+    <form method="POST" action="/bills/<%= index %>?_method=PUT">
+      Name: <input type="text" name="name" value="<%= singleBill.name %>"/> <br/>
+      Bill Amount: $<input type="text" name="billAmount" value="<%= singleBill.billAmount %>"/> <br/>
+      Due Date: <input type="text" name="dueDate" value="<%= singleBill.dueDate %>"/> <br/>
+      Pay Method: <input type="text" name="payMethod" value="<%= singleBill.payMethod %>"/> <br/>
+      Autopay: <input type="checkbox" name="autopay"
+      <% if (singleBill.autopay) { %>
+          checked
+      <% } %> /> <br/>
+      Notes: <input type="text" name="notes" value="<%= singleBill.notes %>"/> <br/>
+
+      <input type="submit" value="Submit Changes"/>
+    </form>
+  </body>
+</html>
