@@ -50,4 +50,4 @@ const bills = [
   }
 ];
 
-module.exports = bills
+module.exports = bills;
