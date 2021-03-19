@@ -108,4 +108,19 @@ router.put('/:index', (req, res) => {
   });
 });
 
+router.put('/:index/pay', (req, res) => {
+  //get data from url query params, e.g. ...?_method=PUT&dueDate=Tue Aug 03 2021 19:00:00 GMT-0400 (Eastern Daylight Time)
+  //change string to date object
+  let nextDueDate = new Date(req.query.dueDate)
+  nextDueDate.setMonth(nextDueDate.getMonth() + 1)
+
+  Bill.findByIdAndUpdate(req.params.index, { dueDate: nextDueDate}, { new: true }, (err, updatedBill) => {
+    if(err) {
+      console.log(err)
+    } else {
+      res.redirect('/bills')
+    };
+  });
+});
+
 module.exports = router;

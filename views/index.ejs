@@ -18,7 +18,7 @@
           <td>$<%= allBills[i].billAmount %></td>
           <td><%= allBills[i].name %></td>
           <td>
-            <form>
+            <form method=POST action='/bills/<%= allBills[i].id %>/pay?_method=PUT&dueDate=<%= allBills[i].dueDate %>'>
               <input type="submit" value="PAY">
             </form>
           </td>
