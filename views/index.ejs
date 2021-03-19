@@ -23,12 +23,12 @@
             </form>
           </td>
           <td>
-            <form action="/bills/<%= i %>">
+            <form action="/bills/<%= allBills[i].id %>">
               <input type="submit" value="DETAILS">
             </form>
           </td>
           <td>
-            <form method=POST action="/bills/<%= i %>?_method=DELETE">
+            <form method=POST action="/bills/<%= allBills[i].id %>?_method=DELETE">
                 <input type='submit' value="Delete"/>
             </form>
           </td>
