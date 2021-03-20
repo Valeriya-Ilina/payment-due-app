@@ -34,6 +34,9 @@ app.use ((req, res, next) => {
   next()
 });
 
+// set up static assets(images/css/client-side JS/etc)
+app.use(express.static('public'));
+
 //interpreting incoming request as JSON
 app.use(express.json());
 //allows to preceive the incoming object as a string or array
