@@ -3,12 +3,13 @@
   <head>
     <meta charset="utf-8">
   </head>
-
-  <title>New User</title>
+  <title>Log in user </title>
   <body>
-    <h4>New User Page</h4>
+    <%- include('../partials/nav.ejs') %>
+    <h4>Login Page</h4>
 
-    <form action="/users" method="POST">
+    <form action="/sessions" method="POST">
+
         <label>
             <span>username:</span>
             <input type="text" name="username" />
@@ -18,9 +19,7 @@
             <span>password:</span>
             <input type="password" name="password" />
         </label>
-        <br />
-        <br />
-        <input type="submit" value="Create User" />
+        <input type="submit" value="login user" />
     </form>
   </body>
 </html>

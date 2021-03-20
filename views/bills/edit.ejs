@@ -12,6 +12,7 @@
   </head>
   <title>Edit Bill</title>
   <body>
+    <%- include('../partials/nav.ejs') %>
     <h1>Edit <%= singleBill.name %></h1>
 
     <form method="POST" action="/bills/<%= index %>?_method=PUT">

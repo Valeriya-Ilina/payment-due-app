@@ -3,11 +3,14 @@ const express = require('express');
 const users = express.Router();
 const User = require('../models/users.js');
 
-
-users.get('/new', (req, res) => {
-  res.render('users/new.ejs')
+// route to show Create User page
+users.get('/signup', (req, res) => {
+  res.render('users/signup.ejs', {
+    currentUser: req.session.currentUser
+  });
 });
 
+//create user
 users.post('/', (req, res) => {
   console.log(req.body)
   req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10))

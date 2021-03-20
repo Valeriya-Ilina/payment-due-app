@@ -1,14 +1,14 @@
 require('dotenv').config();
 const PORT = process.env.PORT;
-
+//require the module installed('express-session')
+const session = require('express-session')
 
 const express = require('express');
 const app = express();
 
 const bills = require('./models/seed.js'); // connected all bills
 
-//requiring bills.js controller
-const billControllers = require('./controllers/bills');
+
 
 //allows for use of PUT and DELETE requests on our forms
 const methodOverride = require("method-override");
@@ -32,6 +32,9 @@ db.on('error', (err) => {console.log("ERROR: ", err)});
 db.on('connected', () => {console.log('mongo connected')});
 db.on('disconnected', () => {console.log('mongo disconnected')});
 
+
+//MIDDLEWARES
+
 //custom middleware, every request passes through it
 app.use ((req, res, next) => {
   console.log("Here is req", req.body)
@@ -48,12 +51,33 @@ app.use(express.json());
 //this will parse the data and create the "req.body object"
 app.use(express.urlencoded({extended: true}));
 
+app.use( session ({
+    secret: process.env.SECRET,
+    resave: false,
+    saveUninitialized: false
+  }));
+
+
+
 
 //CONTROLLERS
-app.use('/bills', billControllers)
 
-const userController = require('./controllers/users.js')
-app.use('/users', userController)
+//requiring bills.js controller
+const billsController = require('./controllers/bills.js');
+app.use('/bills', billsController)
+
+const usersController = require('./controllers/users.js')
+app.use('/users', usersController)
+
+const sessionsController = require('./controllers/sessions.js')
+app.use('/sessions', sessionsController)
+
+//homepage route
+app.get('/', (req, res) => {
+  res.render('sessions/new.ejs', {
+    currentUser: req.session.currentUser
+  })
+})
 
 app.listen(PORT, () => {
   console.log("Server is listening")

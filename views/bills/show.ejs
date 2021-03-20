@@ -5,6 +5,7 @@
     <title>Show Bill</title>
   </head>
   <body>
+    <%- include('../partials/nav.ejs') %>
     <a href="/bills">Back to the Bills</a>
 
     <h1><%= singleBill.name %></h1>
@@ -24,6 +25,5 @@
     </form>
 
      <a href="/bills/<%= index %>/edit">Edit Bill</a>
-
   </body>
 </html>
