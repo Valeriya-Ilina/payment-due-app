@@ -1,5 +1,10 @@
+require('dotenv').config();
+const PORT = process.env.PORT;
+
+
 const express = require('express');
 const app = express();
+
 const bills = require('./models/seed.js'); // connected all bills
 
 //requiring bills.js controller
@@ -11,7 +16,7 @@ app.use(methodOverride('_method'));
 
 //set up database
 const mongoose = require('mongoose');
-const mongoURI = "mongodb://127.0.0.1:27017/payment-due-app";
+const mongoURI = process.env.MONGODBURI;
 const db = mongoose.connection;
 
 mongoose.connect(mongoURI, {
@@ -40,13 +45,16 @@ app.use(express.static('public'));
 //interpreting incoming request as JSON
 app.use(express.json());
 //allows to preceive the incoming object as a string or array
+//this will parse the data and create the "req.body object"
 app.use(express.urlencoded({extended: true}));
 
 
 //CONTROLLERS
 app.use('/bills', billControllers)
 
+const userController = require('./controllers/users.js')
+app.use('/users', userController)
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log("Server is listening")
 })
