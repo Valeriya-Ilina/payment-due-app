@@ -27,7 +27,8 @@ router.get('/', (req, res) => {
         allBills: foundBills
       });
     };
-  });
+    //sort by month
+  }).sort( { dueDate: 1 } );
 });
 
 //new route
