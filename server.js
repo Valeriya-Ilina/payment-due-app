@@ -45,6 +45,12 @@ app.use ((req, res, next) => {
 // set up static assets(images/css/client-side JS/etc)
 app.use(express.static('public'));
 
+//set up materialize css
+app.use(express.static('node_modules/materialize-css/dist'));
+
+//set up calendar module
+app.use('/fullcalendar', express.static('node_modules/fullcalendar/'));
+
 //interpreting incoming request as JSON
 app.use(express.json());
 //allows to preceive the incoming object as a string or array
@@ -56,8 +62,6 @@ app.use( session ({
     resave: false,
     saveUninitialized: false
   }));
-
-
 
 
 //CONTROLLERS
