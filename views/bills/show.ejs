@@ -21,7 +21,7 @@
     <h1><%= singleBill.name %></h1>
     <p>Name: <%= singleBill.name %></p>
     <p>Bill Amount: $<%= singleBill.billAmount %></p>
-    <p>Due Date: <%= singleBill.dueDate %></p>
+    <p>Due Date: <%= dayjs.utc(singleBill.dueDate).format("MMM DD, YYYY") %></p>
     <p>Pay Method: <%= singleBill.payMethod %></p>
     Autopay: <input type="checkbox" name="autopay"
       <% if (singleBill.autopay) { %>

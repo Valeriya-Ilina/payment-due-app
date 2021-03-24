@@ -26,7 +26,6 @@
 
   <body>
     <%- include('../partials/nav.ejs') %>
-    <h1>CALENDAR</h1>
     <div id='calendar'></div>
     <table>
       <tr>
@@ -36,7 +35,12 @@
       </tr>
       <%for(let i = 0; i < allBills.length; i++) {%>
         <tr>
-          <td><%= allBills[i].dueDate %></td>
+          <!-- compare local time with date in GMT 00:00:00 -->
+          <td <% if(dayjs.utc(dayjs.utc().local().format("MMM DD, YYYY"), "MMM DD, YYYY") > dayjs.utc(allBills[i].dueDate)) { %>
+            style="background-color:#FF0000"
+          <% } %>
+
+          ><%= dayjs.utc(allBills[i].dueDate).format("MMM DD, YYYY") %></td>
           <td>$<%= allBills[i].billAmount %></td>
           <td><%= allBills[i].name %></td>
           <td>

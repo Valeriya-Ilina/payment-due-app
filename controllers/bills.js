@@ -8,8 +8,15 @@ const isAuthenticated = (req, res, next) => {
     return next()
   } else {
     res.redirect('/')
-  }
-}
+  };
+};
+
+//date formating
+const dayjs = require('dayjs');
+const utc = require('dayjs/plugin/utc');
+const customParseFormat = require('dayjs/plugin/customParseFormat');
+dayjs.extend(utc);
+dayjs.extend(customParseFormat);
 
 //CONTROLLERS
 
@@ -32,7 +39,8 @@ router.get('/', isAuthenticated, (req, res) => {
     } else {
       res.render('bills/index.ejs', {
         currentUser: req.session.currentUser,
-        allBills: foundBills
+        allBills: foundBills,
+        dayjs: dayjs
       });
     };
     //sort by month
@@ -54,6 +62,8 @@ router.post('/', isAuthenticated, (req, res) => {
   } else {
     req.body.autopay = false
   }
+  //format the Date
+  req.body.dueDate = dayjs.utc(req.body.dueDate,"MMM DD, YYYY")
     //console.log(req.body)
   Bill.create(req.body, (err, createdBill) => {
     if (err) {
@@ -73,7 +83,8 @@ router.get('/:index', isAuthenticated, (req, res) => {
     res.render('bills/show.ejs', {
       currentUser: req.session.currentUser,
       singleBill: foundBill,
-      index: req.params.index
+      index: req.params.index,
+      dayjs: dayjs
     });
   });
 });
@@ -96,7 +107,8 @@ router.get('/:index/edit', isAuthenticated, (req,res) => {
     res.render('bills/edit.ejs', {
       currentUser: req.session.currentUser,
       singleBill: foundBill,
-      index: req.params.index
+      index: req.params.index,
+      dayjs: dayjs
     });
   });
 });
@@ -108,6 +120,8 @@ router.put('/:index', isAuthenticated, (req, res) => {
   } else {
     req.body.autopay = false
   }
+  //format the Date
+  req.body.dueDate = dayjs.utc(req.body.dueDate,"MMM DD, YYYY")
   //console.log(req.body)
   Bill.findByIdAndUpdate(req.params.index, req.body, { new: true }, (err, updatedBill) => {
     // submit the form and update the whole product

@@ -6,15 +6,21 @@
         </span>
         <ul>
             <% if (currentUser) { %>
-                <li>Welcome <%= currentUser.username %></li>
+                <li>
+                  Welcome <%= currentUser.username %>
+                </li>
                 <li>
                     <form action="/sessions?_method=DELETE" method="POST">
                         <button>Log out</button>
                     </form>
                 </li>
             <% } else { %>
-                <li><a href="/">Log In</a></li>
-                <li><a href="/users/signup">Sign Up</a></li>
+                <li>
+                  <a href="/">Log In</a>
+                </li>
+                <li>
+                  <a href="/users/signup">Sign Up</a>
+                </li>
             <% } %>
         </ul>
     </div>
