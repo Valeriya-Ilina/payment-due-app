@@ -22,6 +22,10 @@ dayjs.extend(customParseFormat);
 
 //seed data to the database for testing purposes
 router.get('/seed', isAuthenticated, (req, res) => {
+  //assign seed data to each user personally
+  seed.forEach((obj) => {
+    obj.user = req.session.currentUser
+  })
   Bill.create(seed, (err, data) => {
     res.redirect('/bills')
   });
@@ -32,7 +36,7 @@ router.get('/', isAuthenticated, (req, res) => {
   //res.render('bills/index.ejs', {
     //allBills: bills
   //});
-  Bill.find( {}, (err, foundBills) => {
+  Bill.find( { user: req.session.currentUser }, (err, foundBills) => {
     if(err) {
       console.log(err)
       next(err)
@@ -65,6 +69,7 @@ router.post('/', isAuthenticated, (req, res) => {
   //format the Date
   req.body.dueDate = dayjs.utc(req.body.dueDate,"MMM DD, YYYY")
     //console.log(req.body)
+  req.body.user = req.session.currentUser
   Bill.create(req.body, (err, createdBill) => {
     if (err) {
       console.log(err)
@@ -79,7 +84,6 @@ router.post('/', isAuthenticated, (req, res) => {
 //show route
 router.get('/:index', isAuthenticated, (req, res) => {
   Bill.findById(req.params.index, (err, foundBill) => {
-    console.log(foundBill)
     res.render('bills/show.ejs', {
       currentUser: req.session.currentUser,
       singleBill: foundBill,

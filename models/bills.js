@@ -8,8 +8,9 @@ const billSchema = new Schema ({
   dueDate: {type: Date, required: true},
   autopay: {type: Boolean, default: false},
   payMethod: String,
-  notes: String
-});
+  notes: String,
+  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+}, { timestamps: true });
 
 const Bill = model('Bill', billSchema);
 
