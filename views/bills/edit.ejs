@@ -16,36 +16,42 @@
   <title>Edit Bill</title>
   <body>
     <%- include('../partials/nav.ejs') %>
-    <h1>Edit <%= singleBill.name %></h1>
+    <main>
+      <div id="edit-bill-container">
+        <h1>Edit <%= singleBill.name %></h1>
 
-    <form method="POST" action="/bills/<%= index %>?_method=PUT">
-      Name: <input type="text" name="name" value="<%= singleBill.name %>" required/>
-      Bill Amount: $<input type="text" name="billAmount" value="<%= singleBill.billAmount %>" required/>
-      Due Date: <input class="datepicker" type="text" name="dueDate" value="<%= dayjs.utc(singleBill.dueDate).format("MMM DD, YYYY") %>" required/>
-      Pay Method: <input type="text" name="payMethod" value="<%= singleBill.payMethod %>"/>
-      Notes: <input type="text" name="notes" value="<%= singleBill.notes %>"/>
+        <form method="POST" action="/bills/<%= index %>?_method=PUT">
+          Name: <input type="text" name="name" value="<%= singleBill.name %>" required/>
+          Bill Amount: $<input type="text" name="billAmount" value="<%= singleBill.billAmount %>" required/>
+          Due Date: <input class="datepicker" type="text" name="dueDate" value="<%= dayjs.utc(singleBill.dueDate).format("MMM DD, YYYY") %>" required/>
+          Pay Method: <input type="text" name="payMethod" value="<%= singleBill.payMethod %>"/>
+          Notes: <input type="text" name="notes" value="<%= singleBill.notes %>"/>
 
-      Autopay:
-      <div class="switch">
-        <label>
-          Off
-          <input type="checkbox" name="autopay"
-            <% if (singleBill.autopay) { %>
-                checked
-            <% } %>
-          />
-          <span class="lever"></span>
-          On
-        </label>
+          Autopay:
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" name="autopay"
+                <% if (singleBill.autopay) { %>
+                    checked
+                <% } %>
+              />
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+
+          <button class="waves-effect waves-light btn"><input type="hidden"/>Submit Changes</button>
+        </form>
+
+        <form method=POST action="/bills/<%= index %>?_method=DELETE">
+            <button class="waves-effect waves-light btn"><input type='hidden'/><i class="material-icons left">delete</i>DELETE</button>
+        </form>
       </div>
-
-      <input type="submit" value="Submit Changes"/>
-    </form>
-
+    </main>
+    <%- include('../partials/footer.ejs') %>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
-
-    <%- include('../partials/footer.ejs') %>
   </body>
 </html>

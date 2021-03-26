@@ -17,25 +17,29 @@
   <body>
     <%- include('../partials/nav.ejs') %>
 
-    <h1>New Bill</h1>
-    <form action="/bills" method="POST">
-      Name:<input type="text" name="name" required/>
-      Bill Amount:<input type="text" name="billAmount" required/>
-      Due Date:<input class="datepicker" type="text" name="dueDate" required/>
-      Pay Method:<input type="text" name="payMethod" />
-      Notes:<input type="text" name="notes" />
-      Autopay:
-      <div class="switch">
-        <label>
-          Off
-          <input type="checkbox" name="autopay"/>
-          <span class="lever"></span>
-          On
-        </label>
+    <main>
+      <div id="add-new-bill-container">
+        <h1>New Bill</h1>
+        <form action="/bills" method="POST">
+          Name:<input type="text" name="name" required/>
+          Bill Amount:<input type="text" name="billAmount" required/>
+          Due Date:<input class="datepicker" type="text" name="dueDate" required/>
+          Pay Method:<input type="text" name="payMethod" />
+          Notes:<input type="text" name="notes" />
+          Autopay:
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" name="autopay"/>
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+          <button class="waves-effect waves-light btn"><input type="hidden"/>Create Bill</button>
+        </form>
       </div>
-      <input type="submit" value="Create Bill" />
-    </form>
-
+    </main>
+    <%- include('../partials/footer.ejs') %>
     <!--JavaScript at end of body for optimized loading-->
     <script type="text/javascript" src="/js/materialize.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
