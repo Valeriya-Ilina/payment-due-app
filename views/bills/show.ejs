@@ -16,23 +16,65 @@
   <title>Show Bill</title>
   <body>
     <%- include('../partials/nav.ejs') %>
+    <main>
+      <div class="section">
+        <h5>Name:</h5>
+        <p><b> <%= singleBill.name %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Due Date:</h5>
+        <p><b> $<%= singleBill.billAmount %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Pay Method:</h5>
+        <p><b> <%= singleBill.payMethod %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Autopay:</h5>
+        <p>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" name="autopay"
+                <% if (singleBill.autopay) { %>
+                    checked
+                <% } %>
+                disabled
+              />
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Notes:</h5>
+        <p><b> <%= singleBill.notes %> </b></p>
+      </div>
 
-    <h1><%= singleBill.name %></h1>
-    <p>Name: <%= singleBill.name %></p>
-    <p>Bill Amount: $<%= singleBill.billAmount %></p>
-    <p>Due Date: <%= dayjs.utc(singleBill.dueDate).format("MMM DD, YYYY") %></p>
-    <p>Pay Method: <%= singleBill.payMethod %></p>
-    Autopay: <input type="checkbox" name="autopay"
-      <% if (singleBill.autopay) { %>
-          checked
-      <% } %>
-      disabled />
-    <p>Notes: <%= singleBill.notes %>
 
-    <form method=POST action="/bills/<%= index %>?_method=DELETE">
-        <input type='submit' value="Delete" />
-    </form>
 
-     <a href="/bills/<%= index %>/edit">Edit Bill</a>
+      <!-- <p>Name: <%= singleBill.name %></p>
+      <p>Bill Amount: $<%= singleBill.billAmount %></p>
+      <p>Due Date: <%= dayjs.utc(singleBill.dueDate).format("MMM DD, YYYY") %></p>
+      <p>Pay Method: <%= singleBill.payMethod %></p>
+      Autopay: <input type="checkbox" name="autopay"
+        <% if (singleBill.autopay) { %>
+            checked
+        <% } %>
+        disabled />
+      <p>Notes: <%= singleBill.notes %> -->
+
+      <form method=POST action="/bills/<%= index %>?_method=DELETE">
+          <button class="waves-effect waves-light btn"><input type='hidden'/><i class="material-icons left">delete</i>DELETE</button>
+      </form>
+
+      <a href="/bills/<%= index %>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Bill</a>
+   </main>
+     <%- include('../partials/footer.ejs') %>
   </body>
 </html>

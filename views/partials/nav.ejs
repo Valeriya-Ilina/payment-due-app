@@ -1,24 +1,26 @@
 <nav>
   <div class="nav-wrapper teal lighten-2">
     <% if (currentUser) { %>
-      <a href="/bills" class="">Home</a>
+      <a href="/bills" class="">HOME</a>
+    <% } else { %>
+      <span class="left-align"> Payment Due App - track your obligations </span>
     <% } %>
     <ul class="right">
         <% if (currentUser) { %>
             <li>
               Welcome, <%= currentUser.username %>
             </li>
-            <li>
+            <li id="logout-btn">
                 <form action="/sessions?_method=DELETE" method="POST">
-                    <button>Log out</button>
+                    <button class="btn">SIGN OUT</button>
                 </form>
             </li>
         <% } else { %>
             <li>
-              <a href="/">Log In</a>
+              <a href="/users/signup">Sign Up</a>
             </li>
             <li>
-              <a href="/users/signup">Sign Up</a>
+              <a href="/">Log In</a>
             </li>
         <% } %>
     </ul>

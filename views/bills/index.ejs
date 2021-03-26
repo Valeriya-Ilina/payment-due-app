@@ -24,41 +24,53 @@
 
   <body>
     <%- include('../partials/nav.ejs') %>
-    <div id='calendar'></div>
-    <table>
-      <tr>
-        <th>Due Date</th>
-        <th>Amount</th>
-        <th>Name</th>
-      </tr>
-      <%for(let i = 0; i < allBills.length; i++) {%>
-        <tr>
-          <!-- compare local time with date in GMT 00:00:00 -->
-          <td <% if(dayjs.utc(dayjs.utc().local().format("MMM DD, YYYY"), "MMM DD, YYYY") > dayjs.utc(allBills[i].dueDate)) { %>
-            style="background-color:#FF0000"
-          <% } %>
+    <main class="home">
+      <div id="bills-container">
+        <a href="/bills/new" id="add-new-bill-btn" class="waves-effect waves-light btn"><i class="material-icons left">add</i>Add New Bill</a>
+        <table id="bills-table" class="striped">
+          <tr>
+            <th>Due Date</th>
+            <th>Amount</th>
+            <th>Name</th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+          <%for(let i = 0; i < allBills.length; i++) {%>
+            <tr>
+              <!-- compare local time with date in GMT 00:00:00 -->
+              <td <% if(dayjs.utc(dayjs.utc().local().format("MMM DD, YYYY"), "MMM DD, YYYY") > dayjs.utc(allBills[i].dueDate)) { %>
+                style="background-color:#FF0000"
+              <% } %>
 
-          ><%= dayjs.utc(allBills[i].dueDate).format("MMM DD, YYYY") %></td>
-          <td>$<%= allBills[i].billAmount %></td>
-          <td><%= allBills[i].name %></td>
-          <td>
-            <form method=POST action='/bills/<%= allBills[i].id %>/pay?_method=PUT&dueDate=<%= allBills[i].dueDate %>'>
-              <input type="submit" value="PAY">
-            </form>
-          </td>
-          <td>
-            <form action="/bills/<%= allBills[i].id %>">
-              <input type="submit" value="DETAILS">
-            </form>
-          </td>
-          <td>
-            <form method=POST action="/bills/<%= allBills[i].id %>?_method=DELETE">
-                <input type='submit' value="Delete"/>
-            </form>
-          </td>
-        </tr>
-      <% } %>
-    </table>
-    <a href="/bills/new">Add New Bill</a>
+              ><%= dayjs.utc(allBills[i].dueDate).format("MMM DD, YYYY") %></td>
+              <td>$<%= allBills[i].billAmount %></td>
+              <td><%= allBills[i].name %></td>
+              <td>
+                <form method=POST action='/bills/<%= allBills[i].id %>/pay?_method=PUT&dueDate=<%= allBills[i].dueDate %>'>
+                  <input class="waves-effect waves-light btn" type="submit" value="PAY">
+                </form>
+              </td>
+              <td>
+                <form action="/bills/<%= allBills[i].id %>">
+                  <input class="waves-effect waves-light btn" type="submit" value="DETAILS">
+                </form>
+              </td>
+              <td>
+                <form method=POST action="/bills/<%= allBills[i].id %>?_method=DELETE">
+                    <button class="delete-btn waves-effect waves-light btn">
+                      <input type='hidden' value=""/><i class="material-icons center">delete</i>
+                    </button>
+
+                    <!-- <i class="material-icons">delete</i> -->
+                </form>
+              </td>
+            </tr>
+          <% } %>
+        </table>
+      </div>
+      <div id='calendar'></div>
+    </main>
+    <%- include('../partials/footer.ejs') %>
   </body>
 </html>
