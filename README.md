@@ -16,6 +16,12 @@
 11. User should be able to sign in/sign out.
 12. User should be able to see the calendar with current date.
 
+## Wireframe
+[wireframe.jpg](/wireframe.jpg)
+
+## Link to my hosted working app
+[Payment-Due-App](https://www.example.com)
+
 ## Technologies used:
 1. HTM/CSS/JavaScript
 2. EJS

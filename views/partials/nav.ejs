@@ -1,5 +1,5 @@
 <nav>
-  <div class="nav-wrapper teal lighten-2">
+  <div class="nav-wrapper teal lighten-1">
     <% if (currentUser) { %>
       <a href="/bills" class="">HOME</a>
     <% } else { %>
@@ -12,7 +12,7 @@
             </li>
             <li id="logout-btn">
                 <form action="/sessions?_method=DELETE" method="POST">
-                    <button class="btn">SIGN OUT</button>
+                    <button class="btn blue-grey darken-4">SIGN OUT</button>
                 </form>
             </li>
         <% } else { %>

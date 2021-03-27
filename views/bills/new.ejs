@@ -19,7 +19,7 @@
 
     <main>
       <div id="add-new-bill-container">
-        <h1>New Bill</h1>
+        <h3>New Bill</h3>
         <form action="/bills" method="POST">
           Name:<input type="text" name="name" required/>
           Bill Amount:<input type="text" name="billAmount" required/>
@@ -35,7 +35,7 @@
               On
             </label>
           </div>
-          <button class="waves-effect waves-light btn"><input type="hidden"/>Create Bill</button>
+          <button id="create-bill-btn" class="waves-effect waves-light btn"><input type="hidden"/>Create Bill</button>
         </form>
       </div>
     </main>

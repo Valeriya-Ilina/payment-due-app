@@ -18,7 +18,7 @@
     <%- include('../partials/nav.ejs') %>
     <main>
       <div id="edit-bill-container">
-        <h1>Edit <%= singleBill.name %></h1>
+        <h3>Edit <%= singleBill.name %></h3>
 
         <form method="POST" action="/bills/<%= index %>?_method=PUT">
           Name: <input type="text" name="name" value="<%= singleBill.name %>" required/>
@@ -41,11 +41,11 @@
             </label>
           </div>
 
-          <button class="waves-effect waves-light btn"><input type="hidden"/>Submit Changes</button>
+          <button id="submit-btn" class="waves-effect waves-light btn"><input type="hidden"/><i class="material-icons left">check</i>Submit Changes</button>
         </form>
 
         <form method=POST action="/bills/<%= index %>?_method=DELETE">
-            <button class="waves-effect waves-light btn"><input type='hidden'/><i class="material-icons left">delete</i>DELETE</button>
+            <button id="delete-btn" class="red lighten-2 btn"><input type='hidden'/><i class="material-icons left">delete</i>DELETE BILL</button>
         </form>
       </div>
     </main>

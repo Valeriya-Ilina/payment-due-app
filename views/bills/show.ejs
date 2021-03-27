@@ -34,6 +34,11 @@
         </div>
         <div class="divider"></div>
         <div class="section">
+          <h5>Notes:</h5>
+          <p><b> <%= singleBill.notes %> </b></p>
+        </div>
+        <div class="divider"></div>
+        <div class="section">
           <h5>Autopay:</h5>
           <p>
             <div class="switch">
@@ -50,11 +55,6 @@
               </label>
             </div>
           </p>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <h5>Notes:</h5>
-          <p><b> <%= singleBill.notes %> </b></p>
         </div>
 
         <a href="/bills/<%= index %>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Bill</a>
