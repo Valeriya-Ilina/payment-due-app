@@ -1,65 +1,49 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
-
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-  </head>
-  <title>Show Bill</title>
-  <body>
-    <%- include('../partials/nav.ejs') %>
-    <main>
-      <div id="show-bill-container">
-        <div class="section">
-          <h5>Name:</h5>
-          <p><b> <%= singleBill.name %> </b></p>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <h5>Due Date:</h5>
-          <p><b> $<%= singleBill.billAmount %> </b></p>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <h5>Pay Method:</h5>
-          <p><b> <%= singleBill.payMethod %> </b></p>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <h5>Notes:</h5>
-          <p><b> <%= singleBill.notes %> </b></p>
-        </div>
-        <div class="divider"></div>
-        <div class="section">
-          <h5>Autopay:</h5>
-          <p>
-            <div class="switch">
-              <label>
-                Off
-                <input type="checkbox" name="autopay"
-                  <% if (singleBill.autopay) { %>
-                      checked
-                  <% } %>
-                  disabled
-                />
-                <span class="lever"></span>
-                On
-              </label>
-            </div>
-          </p>
-        </div>
-
-        <a href="/bills/<%= index %>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Bill</a>
+<%- include('../partials/head.ejs') %>
+<title>Show Bill</title>
+<body>
+  <%- include('../partials/nav.ejs') %>
+  <main>
+    <div id="show-bill-container">
+      <div class="section">
+        <h5>Name:</h5>
+        <p><b> <%= singleBill.name %> </b></p>
       </div>
-   </main>
-   <%- include('../partials/footer.ejs') %>
-  </body>
-</html>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Due Date:</h5>
+        <p><b> $<%= singleBill.billAmount %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Pay Method:</h5>
+        <p><b> <%= singleBill.payMethod %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Notes:</h5>
+        <p><b> <%= singleBill.notes %> </b></p>
+      </div>
+      <div class="divider"></div>
+      <div class="section">
+        <h5>Autopay:</h5>
+        <p>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" name="autopay"
+                <% if (singleBill.autopay) { %>
+                    checked
+                <% } %>
+                disabled
+              />
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        </p>
+      </div>
+
+      <a href="/bills/<%= index %>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Bill</a>
+    </div>
+  </main>
+  <%- include('../partials/footer.ejs') %>

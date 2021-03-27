@@ -1,48 +1,33 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <!--Import Google Icon Font-->
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="/css/materialize.min.css"  media="screen,projection"/>
+<%- include('../partials/head.ejs') %>
+<title>New Bill</title>
+<body>
+  <%- include('../partials/nav.ejs') %>
 
-    <!--Let browser know website is optimized for mobile-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <main>
+    <div id="add-new-bill-container">
+      <h3>New Bill</h3>
+      <form action="/bills" method="POST">
+        Name:<input type="text" name="name" required/>
+        Bill Amount:<input type="text" name="billAmount" required/>
+        Due Date:<input class="datepicker" type="text" name="dueDate" required/>
+        Pay Method:<input type="text" name="payMethod" />
+        Notes:<input type="text" name="notes" />
+        Autopay:
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" name="autopay"/>
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+        <button id="create-bill-btn" class="waves-effect waves-light btn"><input type="hidden"/>Create Bill</button>
+      </form>
+    </div>
+  </main>
+  <%- include('../partials/footer.ejs') %>
+  <!--JavaScript at end of body for optimized loading-->
+  <script type="text/javascript" src="/js/materialize.min.js"></script>
+  <script type="text/javascript" src="/js/app.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="/css/style.css">
-
-  </head>
-  <title>New Bill</title>
-  <body>
-    <%- include('../partials/nav.ejs') %>
-
-    <main>
-      <div id="add-new-bill-container">
-        <h3>New Bill</h3>
-        <form action="/bills" method="POST">
-          Name:<input type="text" name="name" required/>
-          Bill Amount:<input type="text" name="billAmount" required/>
-          Due Date:<input class="datepicker" type="text" name="dueDate" required/>
-          Pay Method:<input type="text" name="payMethod" />
-          Notes:<input type="text" name="notes" />
-          Autopay:
-          <div class="switch">
-            <label>
-              Off
-              <input type="checkbox" name="autopay"/>
-              <span class="lever"></span>
-              On
-            </label>
-          </div>
-          <button id="create-bill-btn" class="waves-effect waves-light btn"><input type="hidden"/>Create Bill</button>
-        </form>
-      </div>
-    </main>
-    <%- include('../partials/footer.ejs') %>
-    <!--JavaScript at end of body for optimized loading-->
-    <script type="text/javascript" src="/js/materialize.min.js"></script>
-    <script type="text/javascript" src="/js/app.js"></script>
-
-  </body>
-</html>
+  <%- include('../partials/footer.ejs') %>
