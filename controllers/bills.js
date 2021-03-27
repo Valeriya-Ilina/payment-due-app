@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const seed = require('../models/seed.js');
-const Bill = require('../models/bills.js');
+const Bill = require('../models/bills.js').Bill;
+const PaymentHistory = require('../models/bills.js').PaymentHistory;
 
 const isAuthenticated = (req, res, next) => {
   if (req.session.currentUser) {
@@ -84,6 +85,9 @@ router.post('/', isAuthenticated, (req, res) => {
 //show route
 router.get('/:index', isAuthenticated, (req, res) => {
   Bill.findById(req.params.index, (err, foundBill) => {
+
+    // sorts paymentHistory array by date from newest to oldest
+    foundBill.paymentHistory.sort((payment1, payment2) => payment2.paymentDay - payment1.paymentDay);
     res.render('bills/show.ejs', {
       currentUser: req.session.currentUser,
       singleBill: foundBill,
@@ -148,7 +152,14 @@ router.put('/:index/pay', isAuthenticated, (req, res) => {
   // set the date to be next month
   const nextDueDate = dayjs(date).month(nextMonthNumber)
 
-  Bill.findByIdAndUpdate(req.params.index, { dueDate: nextDueDate}, { new: true }, (err, updatedBill) => {
+  // collecting data together for db update (dueDate and paymentHistory)
+  const paymentHistory = {
+    paymentDay: date,
+    paymentAmount: req.query.paymentAmount,
+    payMethod: req.query.payMethod
+  }
+
+  Bill.findByIdAndUpdate(req.params.index, { dueDate: nextDueDate, $push: { paymentHistory: paymentHistory }}, { new: true }, (err, updatedBill) => {
     if(err) {
       console.log(err)
     } else {

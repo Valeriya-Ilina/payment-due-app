@@ -31,7 +31,7 @@
             <td>$<%= allBills[i].billAmount %></td>
             <td><%= allBills[i].name %></td>
             <td>
-              <form method=POST action='/bills/<%= allBills[i].id %>/pay?_method=PUT&dueDate=<%= allBills[i].dueDate %>'>
+              <form method=POST action='/bills/<%= allBills[i].id %>/pay?_method=PUT&dueDate=<%= allBills[i].dueDate %>&paymentAmount=<%= allBills[i].billAmount %>&payMethod=<%= allBills[i].payMethod %>'>
                 <input class="waves-effect waves-light btn" type="submit" value="PAY">
               </form>
             </td>

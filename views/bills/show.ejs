@@ -2,7 +2,7 @@
 <title>Show Bill</title>
 <body>
   <%- include('../partials/nav.ejs') %>
-  <main>
+  <main class='bill-details'>
     <div id="show-bill-container">
       <div class="section">
         <h5>Name:</h5>
@@ -44,6 +44,24 @@
       </div>
 
       <a href="/bills/<%= index %>/edit" class="waves-effect waves-light btn"><i class="material-icons left">edit</i>Edit Bill</a>
+    </div>
+    <!-- if no payment history, hide the whole container -->
+    <div id="payment-history-container" <% if(!singleBill.paymentHistory.length > 0) { %> hidden <% } %>>
+      <h5>Payment History</h5>
+      <table id="payment-history-table" class="striped centered">
+        <tr>
+          <th>Payment Day</th>
+          <th>Payment Amount</th>
+          <th>Method</th>
+        </tr>
+        <% for(let i = 0; i < singleBill.paymentHistory.length; i++) { %>
+          <tr>
+            <td><%= dayjs.utc(singleBill.paymentHistory[i].paymentDay).format("MMM DD, YYYY") %></td>
+            <td>$<%= singleBill.paymentHistory[i].paymentAmount %></td>
+            <td><%= singleBill.paymentHistory[i].payMethod %></td>
+          </tr>
+        <% } %>
+      </table>
     </div>
   </main>
   <%- include('../partials/footer.ejs') %>

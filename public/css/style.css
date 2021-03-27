@@ -10,12 +10,19 @@ main {
   min-width: 800px;
 }
 
-.home {
+.home, .bill-details {
   display: flex;
   justify-content: space-around;
+  margin-top: 30px;
+}
+
+.home {
   align-items: flex-end;
   flex-wrap: wrap-reverse;
-  margin-top: 30px;
+}
+
+.bill-details {
+  flex-wrap: wrap
 }
 
 #edit-bill-container, #add-new-bill-container, #show-bill-container {
@@ -27,7 +34,7 @@ main {
   margin: 40px 20px 60px 0px;
 }
 
-#bills-table {
+#bills-table, #show-bill-container {
   width: 800px;
 }
 
