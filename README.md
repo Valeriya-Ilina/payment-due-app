@@ -17,7 +17,7 @@
 12. User should be able to see the calendar with current date.
 
 ## Wireframe
-[wireframe.jpg](/wireframe.jpg)
+![wireframe.jpg](/wireframe.jpg)
 
 ## Link to my hosted working app
 [Payment-Due-App](https://www.example.com)
