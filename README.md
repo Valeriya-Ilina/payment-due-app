@@ -34,6 +34,5 @@
 9. FullCalendar - JavaScript Event Calendar
 
 ## Forthcoming features:
-1. Payment history page.
-2. User name should be unique, form validations.
-3. Show bills in calendar list view.
+1. User name should be unique, form validations.
+2. Show bills in calendar list view.
