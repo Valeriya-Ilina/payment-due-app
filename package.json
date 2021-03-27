@@ -2,7 +2,7 @@
   "name": "payment-due-app",
   "version": "1.0.0",
   "engines": {
-    "start": "15.3.0"
+    "node": "15.3.0"
   },
   "description": "",
   "main": "server.js",
