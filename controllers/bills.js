@@ -141,9 +141,12 @@ router.put('/:index', isAuthenticated, (req, res) => {
 
 router.put('/:index/pay', isAuthenticated, (req, res) => {
   //get data from url query params, e.g. ...?_method=PUT&dueDate=Tue Aug 03 2021 19:00:00 GMT-0400 (Eastern Daylight Time)
-  //change string to date object
-  let nextDueDate = new Date(req.query.dueDate)
-  nextDueDate.setMonth(nextDueDate.getMonth() + 1)
+  // change string to date object and convert to UTC format
+  const date = dayjs.utc(req.query.dueDate)
+  // get month mumber and increment (month count starts with 0)
+  const nextMonthNumber = dayjs(date).get('month') + 1
+  // set the date to be next month
+  const nextDueDate = dayjs(date).month(nextMonthNumber)
 
   Bill.findByIdAndUpdate(req.params.index, { dueDate: nextDueDate}, { new: true }, (err, updatedBill) => {
     if(err) {
