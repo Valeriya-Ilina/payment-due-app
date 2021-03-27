@@ -20,7 +20,7 @@
 ![wireframe.jpg](/wireframe.jpg)
 
 ## Link to my hosted working app
-[Payment-Due-App](https://www.example.com)
+[Payment-Due-App](https://payment-due-app.herokuapp.com/)
 
 ## Technologies used:
 1. HTM/CSS/JavaScript
