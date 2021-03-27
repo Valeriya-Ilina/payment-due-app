@@ -28,7 +28,7 @@
             <% } %>
 
             <!-- shows due date in format mmm, dd, yyyy -->
-            ><%= dayjs.utc(allBills[i].dueDate).format("MMM DD, YYYY") %></td>
+            <%= dayjs.utc(allBills[i].dueDate).format("MMM DD, YYYY") %></td>
             <td>$<%= allBills[i].billAmount %></td>
             <td><%= allBills[i].name %></td>
             <td>
